@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Management Web Application</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Task Flow</h1>
+    <button id="openAddModal" class="btn primary">Add task</button>
+    <button id="logoutBtn" class="btn primary">Log Out</button>
+
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="Task filters">
+      <div class="search-group">
+        <label for="searchInput" class="visually-hidden">Search tasks</label>
+        <input id="searchInput" type="search" placeholder="Search by title or description" />
+      </div>
+      <div class="filter-group">
+        <label>
+          Status
+          <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </label>
+        <label>
+          Priority
+          <select id="priorityFilter">
+            <option value="all">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label>
+          Due from
+          <input id="dueFromFilter" type="date" />
+        </label>
+        <label>
+          Due to
+          <input id="dueToFilter" type="date" />
+        </label>
+        <button id="clearFilters" class="btn">Clear filters</button>
+      </div>
+    </section>
+
+    <section class="status-board" aria-label="Task board">
+      <div class="column">
+        <h2>To Do</h2>
+        <ul id="todoList" class="task-list" aria-live="polite"></ul>
+      </div>
+      <div class="column">
+        <h2>In Progress</h2>
+        <ul id="inprogressList" class="task-list" aria-live="polite"></ul>
+      </div>
+      <div class="column">
+        <h2>Completed</h2>
+        <ul id="completedList" class="task-list" aria-live="polite"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+  <div class="footer-container">
+    
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p><img src="../images/contact.png" alt="Contact" class="contact" /> +94 77 123 4567</p>
+      <p><img src="../images/email.png" alt="Contact" class="email" /> support@taskflow.com</p>
+    </div>
+
+    
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <img src="../images/facebook.png" alt="Facebook" class="social-icon" />
+      </a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <img src="../images/instagram.png" alt="Instagram" class="social-icon" />
+      </a>
+      <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+        <img src="../images/linkedin.png" alt="LinkedIn" class="social-icon" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <dialog id="taskModal" aria-labelledby="modalTitle">
+    <form id="taskForm" method="dialog">
+      <h3 id="modalTitle">Add task</h3>
+      <input type="hidden" id="taskId" />
+      <div class="form-row">
+        <label for="title">Task title</label>
+        <input id="title" type="text" required maxlength="80" />
+      </div>
+      <div class="form-row">
+        <label for="description">Description</label>
+        <textarea id="description" rows="3" maxlength="400"></textarea>
+      </div>
+      <div class="form-row">
+        <label for="dueDate">Due date</label>
+        <input id="dueDate" type="date" />
+      </div>
+      <div class="form-row">
+        <label for="priority">Priority</label>
+        <select id="priority" required>
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn primary">Save</button>
+        <button type="button" id="closeModal" class="btn">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirmDialog">
+    <form method="dialog">
+      <p id="confirmText">Delete this task permanently?</p>
+      <div class="form-actions">
+        <button id="confirmYes" class="btn danger">Delete</button>
+        <button id="confirmNo" class="btn">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="taskTemplate">
+    <li class="task-card" data-id="">
+      <div class="task-top">
+        <span class="priority-badge"></span>
+        <div class="task-actions">
+          <button class="icon-btn edit" title="Edit" aria-label="Edit"><img src="../images/edit.png" alt="Edit" class="edit"></button>
+          <button class="icon-btn delete" title="Delete" aria-label="Delete"><img src="../images/delete.png" alt="Delete" class="delete"></button>
+        </div>
+      </div>
+      <h4 class="task-title"></h4>
+      <p class="task-desc"></p>
+      <div class="task-meta">
+        <span class="due"></span>
+        <div class="status-controls">
+          <label class="status-label">Status</label>
+          <select class="status-select">
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+      </div>
+    </li>
+  </template>
+  <script src="../js/script.js"></script>
+</body>
+</html>
