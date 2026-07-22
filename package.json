@@ -1,0 +1,24 @@
+{
+  "name": "task-management-web-application",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NethmiAyesha82/Task_Management_Web_Application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NethmiAyesha82/Task_Management_Web_Application/issues"
+  },
+  "homepage": "https://github.com/NethmiAyesha82/Task_Management_Web_Application#readme",
+  "description": "",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
